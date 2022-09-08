@@ -1,0 +1,112 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://NavTutorial.gd" type="Script" id=2]
+[ext_resource path="res://3d/AnimationPlayer.gd" type="Script" id=3]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 896, 132.434, 706, 343, 523, 346, 525, 213, 715, 33, 789.503, 30.9419, 896, 28, 440, 344, 271, 351, 108, 268, 105, 27, 365.602, 29.5633, 438, 273, 890, 350, 109, 352, 448, 208, 464.357, 30.5347, 481, 207, 523.774, 31.1191 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6 ), PoolIntArray( 7, 8, 9, 10, 11, 12 ), PoolIntArray( 0, 13, 1 ), PoolIntArray( 8, 14, 9 ), PoolIntArray( 15, 12, 11, 16 ), PoolIntArray( 17, 15, 16, 18 ), PoolIntArray( 3, 17, 18, 4 ) ]
+outlines = [ PoolVector2Array( 108, 268, 109, 352, 271, 351, 440, 344, 438, 273, 448, 208, 481, 207, 525, 213, 523, 346, 706, 343, 890, 350, 896, 132.434, 896, 28, 789.503, 30.9419, 715, 33, 523.774, 31.1191, 464.357, 30.5347, 365.602, 29.5633, 105, 27 ) ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 36.0
+
+[sub_resource type="RectangleShape2D" id=3]
+
+[sub_resource type="Animation" id=4]
+resource_name = "Move"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 483, 190 ), Vector2( 483, 44 ), Vector2( 483, 190 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 483, 190 ) ]
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Icon" type="Sprite" parent="."]
+position = Vector2( 501.5, 15.5 )
+scale = Vector2( 12.3594, 0.296875 )
+texture = ExtResource( 1 )
+
+[node name="Icon2" type="Sprite" parent="."]
+position = Vector2( 501.5, 361.716 )
+scale = Vector2( 12.3594, 0.296875 )
+texture = ExtResource( 1 )
+
+[node name="Icon3" type="Sprite" parent="."]
+position = Vector2( 480.197, 292.202 )
+rotation = 1.5708
+scale = Vector2( 2.4438, 0.962585 )
+texture = ExtResource( 1 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
+navpoly = SubResource( 1 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 152, 73 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Icon" type="Sprite" parent="KinematicBody2D"]
+position = Vector2( 0, -2 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+shape = SubResource( 2 )
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="KinematicBody2D"]
+avoidance_enabled = true
+radius = 34.96
+
+[node name="Timer" type="Timer" parent="KinematicBody2D"]
+wait_time = 0.103
+autostart = true
+
+[node name="Obstacle" type="KinematicBody2D" parent="."]
+position = Vector2( 483, 190 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle"]
+shape = SubResource( 3 )
+
+[node name="Icon" type="Sprite" parent="Obstacle/CollisionShape2D"]
+position = Vector2( -0.499999, 0 )
+scale = Vector2( 0.296875, 0.28125 )
+texture = ExtResource( 1 )
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Obstacle"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Obstacle"]
+anims/Move = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+script = ExtResource( 3 )
+
+[connection signal="timeout" from="KinematicBody2D/Timer" to="KinematicBody2D" method="_on_Timer_timeout"]

@@ -1,0 +1,212 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://3d/Player.gd" type="Script" id=1]
+[ext_resource path="res://3d/Horse.tscn" type="PackedScene" id=2]
+[ext_resource path="res://3d/KinematicBody.gd" type="Script" id=3]
+[ext_resource path="res://3d/NavigationMeshInstance2.gd" type="Script" id=4]
+[ext_resource path="res://3d/NavigationMeshInstanceSpawn.gd" type="Script" id=5]
+[ext_resource path="res://Spawnable.tscn" type="PackedScene" id=6]
+
+[sub_resource type="CapsuleShape" id=2]
+
+[sub_resource type="CapsuleMesh" id=3]
+
+[sub_resource type="NavigationMesh" id=4]
+vertices = PoolVector3Array( -0.625337, 0.0912992, -10.4222, 1.39466, 0.0912992, -7.39223, 5.43466, 0.0912992, -7.39223, -14.7653, 0.0912992, 10.7878, -14.7653, 0.0912992, 13.8178, -7.69534, 0.0912992, 13.8178, -7.69534, 0.0912992, -14.4622, -14.7653, 0.0912992, -14.4622, -14.7653, 0.0912992, -10.4222, -3.65534, 0.0912992, -10.4222, 4.42466, 0.0912992, 10.7878, -14.7653, 0.0912992, 10.7878, -7.69534, 0.0912992, 13.8178, -0.625337, 0.0912992, 13.8178, -0.625337, 0.0912992, -14.4622, -7.69534, 0.0912992, -14.4622, -3.65534, 0.0912992, -10.4222, -0.625337, 0.0912992, -10.4222, 13.5147, 0.0912992, 6.74777, 9.47466, 0.0912992, 3.71778, 8.46466, 0.0912992, 9.77777, 6.44466, 0.0912992, -14.4622, -0.625337, 0.0912992, -14.4622, -0.625337, 0.0912992, -10.4222, 5.43466, 0.0912992, -7.39223, 9.47466, 0.0912992, -7.39223, 4.42466, 0.0912992, 10.7878, -0.625337, 0.0912992, 13.8178, 6.44466, 0.0912992, 13.8178, 8.46466, 0.0912992, 9.77777, 8.46466, 0.0912992, 9.77777, 6.44466, 0.0912992, 13.8178, 13.5147, 0.0912992, 13.8178, 13.5147, 0.0912992, 6.74777, 13.5147, 0.0912992, -14.4622, 6.44466, 0.0912992, -14.4622, 9.47466, 0.0912992, -7.39223, 13.5147, 0.0912992, -7.39223, 13.5147, 0.0912992, -0.322226, 10.4847, 0.0912992, -3.35223, 9.47466, 0.0912992, 3.71778, 13.5147, 0.0912992, 6.74777, 13.5147, 0.0912992, -7.39223, 9.47466, 0.0912992, -7.39223, 10.4847, 0.0912992, -3.35223, 13.5147, 0.0912992, -0.322226, 3.41466, 0.0912992, 1.69777, 5.43466, 0.0912992, -7.39223, 1.39466, 0.0912992, -7.39223, -2.64534, 0.0912992, -2.34223, -4.66534, 0.0912992, 3.71778, 4.42466, 0.0912992, 10.7878, 3.41466, 0.0912992, 1.69777, -4.66534, 0.0912992, 3.71778, -7.69534, 0.0912992, 6.74777, -10.7253, 0.0912992, 6.74777, -11.7353, 0.0912992, 2.70778, -14.7653, 0.0912992, -0.322226, -14.7653, 0.0912992, 10.7878, -7.69534, 0.0912992, -3.35223, -3.65534, 0.0912992, -10.4222, -14.7653, 0.0912992, -10.4222, -14.7653, 0.0912992, -0.322226, -11.7353, 0.0912992, 2.70778, -14.7653, 0.0912992, 10.7878, 4.42466, 0.0912992, 10.7878, -7.69534, 0.0912992, 6.74777, -10.7253, 0.0912992, 6.74777, -9.71534, 2.7113, 2.70778, -9.71534, 2.7113, 4.72778, -6.68534, 2.7113, 3.71778, -4.66534, 2.7113, -2.34223, -4.66534, 2.7113, -6.38223, -0.625337, 2.7113, -7.39223, -2.64534, 2.7113, -8.40223, -4.66534, 2.7113, -6.38223, -4.66534, 2.7113, -2.34223, 5.43466, 2.7113, 1.69777, 6.44466, 2.7113, 8.76777, 7.45466, 2.7113, 2.70778, 8.46466, 2.7113, -3.35223, 8.46466, 2.7113, -5.37222, 6.44466, 2.7113, -5.37222, 5.43466, 2.7113, 1.69777, 7.45466, 2.7113, 2.70778 )
+polygons = [ PoolIntArray( 2, 1, 0 ), PoolIntArray( 5, 4, 3 ), PoolIntArray( 7, 6, 8 ), PoolIntArray( 8, 6, 9 ), PoolIntArray( 13, 12, 10 ), PoolIntArray( 10, 12, 11 ), PoolIntArray( 17, 16, 14 ), PoolIntArray( 14, 16, 15 ), PoolIntArray( 20, 19, 18 ), PoolIntArray( 25, 24, 21 ), PoolIntArray( 21, 24, 23 ), PoolIntArray( 21, 23, 22 ), PoolIntArray( 29, 28, 26 ), PoolIntArray( 26, 28, 27 ), PoolIntArray( 31, 30, 32 ), PoolIntArray( 32, 30, 33 ), PoolIntArray( 37, 36, 34 ), PoolIntArray( 34, 36, 35 ), PoolIntArray( 39, 38, 40 ), PoolIntArray( 40, 38, 41 ), PoolIntArray( 43, 42, 44 ), PoolIntArray( 44, 42, 45 ), PoolIntArray( 48, 47, 49 ), PoolIntArray( 49, 47, 46 ), PoolIntArray( 49, 46, 50 ), PoolIntArray( 53, 52, 54 ), PoolIntArray( 54, 52, 51 ), PoolIntArray( 56, 55, 57 ), PoolIntArray( 57, 55, 58 ), PoolIntArray( 63, 62, 59 ), PoolIntArray( 59, 62, 61 ), PoolIntArray( 59, 61, 60 ), PoolIntArray( 67, 66, 64 ), PoolIntArray( 64, 66, 65 ), PoolIntArray( 69, 68, 70 ), PoolIntArray( 70, 68, 71 ), PoolIntArray( 71, 68, 72 ), PoolIntArray( 74, 73, 75 ), PoolIntArray( 75, 73, 76 ), PoolIntArray( 79, 78, 77 ), PoolIntArray( 81, 80, 82 ), PoolIntArray( 82, 80, 83 ), PoolIntArray( 83, 80, 84 ) ]
+sample_partition_type = 1
+cell_size = 1.01
+cell_height = 0.01
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="BoxShape" id=5]
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 46.4727 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "move"
+length = 8.089
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3, 4.9, 8.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 46.4727 ), Vector3( 0, 0, 28.3425 ), Vector3( 0, 0, 28.3425 ), Vector3( 0, 0, 46.4727 ) ]
+}
+
+[sub_resource type="CapsuleMesh" id=6]
+
+[sub_resource type="CapsuleShape" id=7]
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -1.77954, 0, -3.27009 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "move"
+length = 3.027
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -1.77954, 0, -3.27009 ), Vector3( 5.3764, 0, -3.27009 ), Vector3( -1.77954, 0, -3.27009 ) ]
+}
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Player" type="KinematicBody" parent="." groups=["Player"]]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource( 1 )
+horse = NodePath("../Horse")
+
+[node name="CollisionShape" type="CollisionShape" parent="Player"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.63077, 0 )
+shape = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Player"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.63077, 0 )
+mesh = SubResource( 3 )
+
+[node name="Camera" type="Camera" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 0.771114, 0.636698, 0, -0.636698, 0.771114, -0.838702, 7.32144, 13.1409 )
+
+[node name="RayCastPoint" type="Spatial" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89882, 0 )
+
+[node name="Horse" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3967, 0.0657368, -10.5647 )
+collision_layer = 7
+collision_mask = 7
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
+navmesh = SubResource( 4 )
+script = ExtResource( 5 )
+SpawnableObject = ExtResource( 6 )
+
+[node name="CSGMesh" type="CSGMesh" parent="NavigationMeshInstance" groups=["navmesh"]]
+transform = Transform( 14.9525, 0, 0, 0, 0.0787008, 0, 0, 0, 14.9525, -0.822877, 0, -0.519766 )
+use_collision = true
+mesh = SubResource( 1 )
+
+[node name="CSGMesh4" type="CSGMesh" parent="NavigationMeshInstance" groups=["navmesh"]]
+transform = Transform( 14.9525, 0, 0, 0, 0.0787008, 0, 0, 0, 14.9525, -0.822877, 0, -0.519766 )
+use_collision = true
+mesh = SubResource( 1 )
+
+[node name="CSGMesh2" type="CSGMesh" parent="NavigationMeshInstance"]
+transform = Transform( 0.998607, 0, -3.86916, 0, 1.3874, 0, 0.576546, 0, 6.70158, -5.44882, 1.31244, -1.71009 )
+use_collision = true
+mesh = SubResource( 1 )
+
+[node name="CSGMesh3" type="CSGMesh" parent="NavigationMeshInstance"]
+transform = Transform( 1.14529, 0, -0.898811, 0, 1.3874, 0, 0.133932, 0, 7.68595, 6.70412, 1.31244, 1.46368 )
+use_collision = true
+mesh = SubResource( 1 )
+
+[node name="StaticBody" type="StaticBody" parent="NavigationMeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="NavigationMeshInstance/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.596026, 0, 6.53336 )
+shape = SubResource( 5 )
+
+[node name="Timer" type="Timer" parent="NavigationMeshInstance"]
+process_mode = 0
+wait_time = 5.661
+one_shot = true
+autostart = true
+
+[node name="NavigationMeshInstance2" type="NavigationMeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 46.4727 )
+navmesh = SubResource( 4 )
+script = ExtResource( 4 )
+
+[node name="CSGMesh" type="CSGMesh" parent="NavigationMeshInstance2" groups=["navmesh"]]
+transform = Transform( 14.9525, 0, 0, 0, 0.0787008, 0, 0, 0, 14.9525, -0.822877, 0, -0.519766 )
+use_collision = true
+mesh = SubResource( 1 )
+
+[node name="CSGMesh4" type="CSGMesh" parent="NavigationMeshInstance2" groups=["navmesh"]]
+transform = Transform( 14.9525, 0, 0, 0, 0.0787008, 0, 0, 0, 14.9525, -0.822877, 0, -0.519766 )
+use_collision = true
+mesh = SubResource( 1 )
+
+[node name="CSGMesh2" type="CSGMesh" parent="NavigationMeshInstance2"]
+transform = Transform( 0.998607, 0, -3.86916, 0, 1.3874, 0, 0.576546, 0, 6.70158, -5.44882, 1.31244, -1.71009 )
+use_collision = true
+mesh = SubResource( 1 )
+
+[node name="CSGMesh3" type="CSGMesh" parent="NavigationMeshInstance2"]
+transform = Transform( 1.14529, 0, -0.898811, 0, 1.3874, 0, 0.133932, 0, 7.68595, 6.70412, 1.31244, 1.46368 )
+use_collision = true
+mesh = SubResource( 1 )
+
+[node name="StaticBody" type="StaticBody" parent="NavigationMeshInstance2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="NavigationMeshInstance2/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.596026, 0, 6.53336 )
+shape = SubResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NavigationMeshInstance2"]
+anims/RESET = SubResource( 10 )
+anims/move = SubResource( 11 )
+
+[node name="KinematicBody" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77954, 0, -3.27009 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 3 )
+
+[node name="CSGMesh" type="CSGMesh" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.50988, -6.59991e-08 )
+mesh = SubResource( 6 )
+
+[node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.57844, -6.89958e-08 )
+shape = SubResource( 7 )
+
+[node name="NavigationObstacle" type="NavigationObstacle" parent="KinematicBody"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody"]
+anims/RESET = SubResource( 8 )
+anims/move = SubResource( 9 )
+
+[connection signal="timeout" from="NavigationMeshInstance/Timer" to="NavigationMeshInstance" method="_on_Timer_timeout"]

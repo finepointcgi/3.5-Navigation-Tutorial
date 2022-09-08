@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="CubeMesh" id=1]
+
+[node name="Spawnable" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 6.00772, 0, 0, 0, 0.088068, 0, 0, 0, 6.00772, 6.43357, 0, -21.153 )
+mesh = SubResource( 1 )
