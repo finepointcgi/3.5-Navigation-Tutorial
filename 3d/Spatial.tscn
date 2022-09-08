@@ -1,11 +1,7 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://3d/Player.gd" type="Script" id=1]
 [ext_resource path="res://3d/Horse.tscn" type="PackedScene" id=2]
-[ext_resource path="res://3d/KinematicBody.gd" type="Script" id=3]
-[ext_resource path="res://3d/NavigationMeshInstance2.gd" type="Script" id=4]
-[ext_resource path="res://3d/NavigationMeshInstanceSpawn.gd" type="Script" id=5]
-[ext_resource path="res://Spawnable.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape" id=2]
 
@@ -20,83 +16,12 @@ cell_height = 0.01
 
 [sub_resource type="CubeMesh" id=1]
 
-[sub_resource type="BoxShape" id=5]
-
-[sub_resource type="Animation" id=10]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:translation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 46.4727 ) ]
-}
-
-[sub_resource type="Animation" id=11]
-resource_name = "move"
-length = 8.089
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:translation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 3, 4.9, 8.1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 46.4727 ), Vector3( 0, 0, 28.3425 ), Vector3( 0, 0, 28.3425 ), Vector3( 0, 0, 46.4727 ) ]
-}
-
-[sub_resource type="CapsuleMesh" id=6]
-
-[sub_resource type="CapsuleShape" id=7]
-
-[sub_resource type="Animation" id=8]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:translation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -1.77954, 0, -3.27009 ) ]
-}
-
-[sub_resource type="Animation" id=9]
-resource_name = "move"
-length = 3.027
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:translation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5, 3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector3( -1.77954, 0, -3.27009 ), Vector3( 5.3764, 0, -3.27009 ), Vector3( -1.77954, 0, -3.27009 ) ]
-}
-
 [node name="Spatial" type="Spatial"]
 
 [node name="Player" type="KinematicBody" parent="." groups=["Player"]]
 collision_layer = 5
 collision_mask = 5
 script = ExtResource( 1 )
-horse = NodePath("../Horse")
 
 [node name="CollisionShape" type="CollisionShape" parent="Player"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.63077, 0 )
@@ -109,9 +34,6 @@ mesh = SubResource( 3 )
 [node name="Camera" type="Camera" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 0.771114, 0.636698, 0, -0.636698, 0.771114, -0.838702, 7.32144, 13.1409 )
 
-[node name="RayCastPoint" type="Spatial" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89882, 0 )
-
 [node name="Horse" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3967, 0.0657368, -10.5647 )
 collision_layer = 7
@@ -119,8 +41,6 @@ collision_mask = 7
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
 navmesh = SubResource( 4 )
-script = ExtResource( 5 )
-SpawnableObject = ExtResource( 6 )
 
 [node name="CSGMesh" type="CSGMesh" parent="NavigationMeshInstance" groups=["navmesh"]]
 transform = Transform( 14.9525, 0, 0, 0, 0.0787008, 0, 0, 0, 14.9525, -0.822877, 0, -0.519766 )
@@ -141,72 +61,3 @@ mesh = SubResource( 1 )
 transform = Transform( 1.14529, 0, -0.898811, 0, 1.3874, 0, 0.133932, 0, 7.68595, 6.70412, 1.31244, 1.46368 )
 use_collision = true
 mesh = SubResource( 1 )
-
-[node name="StaticBody" type="StaticBody" parent="NavigationMeshInstance"]
-
-[node name="CollisionShape" type="CollisionShape" parent="NavigationMeshInstance/StaticBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.596026, 0, 6.53336 )
-shape = SubResource( 5 )
-
-[node name="Timer" type="Timer" parent="NavigationMeshInstance"]
-process_mode = 0
-wait_time = 5.661
-one_shot = true
-autostart = true
-
-[node name="NavigationMeshInstance2" type="NavigationMeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 46.4727 )
-navmesh = SubResource( 4 )
-script = ExtResource( 4 )
-
-[node name="CSGMesh" type="CSGMesh" parent="NavigationMeshInstance2" groups=["navmesh"]]
-transform = Transform( 14.9525, 0, 0, 0, 0.0787008, 0, 0, 0, 14.9525, -0.822877, 0, -0.519766 )
-use_collision = true
-mesh = SubResource( 1 )
-
-[node name="CSGMesh4" type="CSGMesh" parent="NavigationMeshInstance2" groups=["navmesh"]]
-transform = Transform( 14.9525, 0, 0, 0, 0.0787008, 0, 0, 0, 14.9525, -0.822877, 0, -0.519766 )
-use_collision = true
-mesh = SubResource( 1 )
-
-[node name="CSGMesh2" type="CSGMesh" parent="NavigationMeshInstance2"]
-transform = Transform( 0.998607, 0, -3.86916, 0, 1.3874, 0, 0.576546, 0, 6.70158, -5.44882, 1.31244, -1.71009 )
-use_collision = true
-mesh = SubResource( 1 )
-
-[node name="CSGMesh3" type="CSGMesh" parent="NavigationMeshInstance2"]
-transform = Transform( 1.14529, 0, -0.898811, 0, 1.3874, 0, 0.133932, 0, 7.68595, 6.70412, 1.31244, 1.46368 )
-use_collision = true
-mesh = SubResource( 1 )
-
-[node name="StaticBody" type="StaticBody" parent="NavigationMeshInstance2"]
-
-[node name="CollisionShape" type="CollisionShape" parent="NavigationMeshInstance2/StaticBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.596026, 0, 6.53336 )
-shape = SubResource( 5 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="NavigationMeshInstance2"]
-anims/RESET = SubResource( 10 )
-anims/move = SubResource( 11 )
-
-[node name="KinematicBody" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77954, 0, -3.27009 )
-collision_layer = 3
-collision_mask = 3
-script = ExtResource( 3 )
-
-[node name="CSGMesh" type="CSGMesh" parent="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.50988, -6.59991e-08 )
-mesh = SubResource( 6 )
-
-[node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.57844, -6.89958e-08 )
-shape = SubResource( 7 )
-
-[node name="NavigationObstacle" type="NavigationObstacle" parent="KinematicBody"]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody"]
-anims/RESET = SubResource( 8 )
-anims/move = SubResource( 9 )
-
-[connection signal="timeout" from="NavigationMeshInstance/Timer" to="NavigationMeshInstance" method="_on_Timer_timeout"]
